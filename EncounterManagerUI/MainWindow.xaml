@@ -1,0 +1,147 @@
+﻿<Window x:Class="EncounterManagerUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EncounterManagerUI"
+        mc:Ignorable="d"
+               Title="Encounter Manager (v 1.0 beta)" Height="560" Width="540">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New" Click="mnuNew_Click"/>
+                    <Separator />
+                    <MenuItem Header="_Exit" Click="mnuExit_Click"/>
+                </MenuItem>
+            </Menu>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>
+
+
+        <GroupBox x:Name="grpInitiative" Header="Initiative" Grid.Column="1" Grid.Row="2" IsEnabled="false">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="lblCurrentInitiative" BorderBrush="DarkGray" BorderThickness="1" Grid.Column="0" Grid.Row="0" Width="200" Height="25" Margin="5"/>
+                <ScrollViewer Grid.Column="0" Grid.Row="2" Width="200" Height="140" Margin="5" VerticalScrollBarVisibility="Auto">
+                    <ListBox x:Name="lstInitiative" IsEnabled="false"/>
+                </ScrollViewer>
+                
+                <Button x:Name="btnNextTurn" Grid.Column="0" Grid.Row="1" Content="Next Turn" Height="20" Margin="5" IsEnabled="false" Click="btnNextTurn_Click" Background="LavenderBlush"/>
+
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Participants" Grid.Column="1" Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <ListBox x:Name="lstParticipants" Grid.Column="0" Grid.Row="0" Width="200" Height="150" Margin="5" SelectionChanged="lstParticipants_SelectionChanged"/>
+                <Button x:Name="btnAddParticipant" Grid.Column="0" Grid.Row="1" Content="Add Monsters or Player" Height="20" Margin="5" Click="btnAddParticipant_Click"/>
+                <Button x:Name="btnRollForInitiative" Grid.Column="0" Grid.Row="2" Content="Roll for Initiative!" Height="20" Margin="5" IsEnabled="false" Click="btnRollForInitiative_Click"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox x:Name="grpMonster" Header="Monster" Grid.Column="2" Grid.Row="1" Grid.RowSpan="1" IsEnabled="false">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="19.2"/>
+                    <ColumnDefinition Width="60.8"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Label x:Name="lblName" Grid.Column="0" Grid.Row="0" Content="" Margin="4" FontWeight="SemiBold" FontSize="15" Grid.ColumnSpan="4"/>
+                <Label Grid.Column="3" Grid.Row="0" Content="HP:" Margin="5" FontSize="15"/>
+                <Label x:Name="lblCurrentHP" Grid.Column="3" Grid.Row="0" Margin="32,5,5,5" FontSize="15"/>
+                <Button x:Name="btnMonsterInfo" Grid.Column="3" Grid.Row="0" Content="Info" Margin="0,10,5.4,10.8" Width="auto" Height="20" HorizontalAlignment="Right" Click="btnMonsterInfo_Click"/>
+                <Label x:Name="lblType" Grid.Column="0" Grid.Row="1" Content="" Width="auto" Margin="5" FontStyle="Italic" Grid.ColumnSpan="2"/>
+
+                <StackPanel Grid.Column="0" Grid.Row="2" Margin="5,5.2,5,4.6" Width="auto" Grid.ColumnSpan="2">
+                    <Label Content="AC:" Margin="0"/>
+                    <Label Content="Total HP:" Margin="0"/>
+                    <Label Content="Speed:" Margin="0"/>
+                    <Label Content="PP:" Margin="0"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="2" Margin="0,5.2,5.2,4.6" HorizontalAlignment="Right" Width="30">
+                    <Label x:Name="lblArmorClass" Content="" Margin="0"/>
+                    <Label x:Name="lblTotalHP" Content="" Margin="0"/>
+                    <Label x:Name="lblSpeed" Content="" Margin="0"/>
+                    <Label x:Name="lblPassivePerception" Content="" Margin="0"/>
+                </StackPanel>
+
+
+                <StackPanel  Grid.Column="3" Grid.Row="2">
+                    <ListBox x:Name="lstAttacks" Height="80" Width="125" Margin="5.8,1.2,5.4,3.6" VerticalAlignment="Top"/>
+                    <Button x:Name="btnRechargeAttacks" Content="Recharge Attacks" Margin="6,2,6,2" Click="btnRechargeAttacks_Click"/>
+                </StackPanel>
+                <Button x:Name="btnAttack" Grid.Column="0" Grid.Row="3" Content="Attack!" Height="20" Grid.ColumnSpan="4" Margin="5,4.8,5.4,0.8" Background="LavenderBlush" Click="btnAttack_Click"/>
+                <CheckBox x:Name="chkAdvantage" Grid.Column="1" Grid.Row="4" Content="Advantage" Grid.ColumnSpan="2" Margin="4" Checked="chkAdvantage_Changed" Unchecked="chkAdvantage_Changed" HorizontalAlignment="Right"/>
+                <CheckBox x:Name="chkDisadvantage" Grid.Column="3" Grid.Row="4" Content="Disadvantage" Margin="4" Checked="chkDisadvantage_Changed" Unchecked="chkDisadvantage_Changed"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox x:Name="grpTakingDamage" Header="Take Damage" Grid.Column="2" Grid.Row="2" IsEnabled="false">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Column="0" Grid.Row="0">
+                    <Button x:Name="btnSlashing" Grid.Column="0" Grid.Row="0" Content="Slashing" Height="20" Margin="5" Click="btnSlashing_Click"/>
+                    <Button x:Name="btnPiercing" Grid.Column="0" Grid.Row="1" Content="Piercing" Height="20" Margin="5" Click="btnPiercing_Click"/>
+                    <Button x:Name="btnBludgeoning" Grid.Column="0" Grid.Row="2" Content="Bludgeoning" Height="20" Margin="5" Click="btnBludgeoning_Click"/>
+                    <CheckBox x:Name="chkMagic" Grid.Column="0" Grid.Row="3" Content="Magical" Margin="5" VerticalAlignment="Center"/>
+                </StackPanel>
+                <ListBox x:Name="lstDamageType" Grid.Column="1" Grid.Row="0" Width="120" Height="205" Grid.RowSpan="4" Margin="5"/>
+                <Button x:Name="btnDamageOK" Grid.Column="2" Grid.Row="0" Content="OK" Grid.RowSpan="4" Width="30" Margin="5" Click="btnDamageOK_Click"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

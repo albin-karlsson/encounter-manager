@@ -1,0 +1,118 @@
+﻿<Window x:Class="EncounterManagerUI.AddParticipantWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EncounterManagerUI"
+        mc:Ignorable="d"
+         Title="Add Participant" Height="730" Width="295">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="1" Content="Name:"/>
+        <TextBox x:Name="txtName" Grid.Column="2" Grid.Row="1" Width="100" HorizontalAlignment="Left" Height="25"/>
+        <RadioButton x:Name="rdoMonster" Grid.Column="1" Grid.Row="2" Content="Monster" Margin="5,5.4,4.6,0" Height="15" VerticalAlignment="Top" Checked="rdoMonster_Checked"/>
+        <RadioButton x:Name="rdoPlayer" Grid.Column="1" Grid.Row="3" Content="Player" Margin="5" Checked="rdoPlayer_Checked"/>
+
+        <GroupBox x:Name="grpMonster" Grid.Column="1" Grid.Row="4" Header="Monster" Grid.ColumnSpan="2" IsEnabled="false">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Column="0" Grid.Row="1">
+                    <Label Content="AC:" Height="25" Margin="2"/>
+                    <Label Content="HP:" Height="25" Margin="2"/>
+                    <Label Content="DEX mod.:" Height="25" Margin="2"/>
+                    <Label Content="Speed:" Height="25" Margin="2"/>
+                    <Label Content="PP:" Height="25" Margin="2"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="1" Margin="2">
+                    <TextBox x:Name="txtAC" Width="30" Height="25" Margin="2"/>
+                    <TextBox x:Name="txtHP" Width="30" Height="25" Margin="2"/>
+                    <TextBox x:Name="txtDEX" Width="30" Height="25" Margin="2"/>
+                    <TextBox x:Name="txtSpeed" Width="30" Height="25" Margin="2"/>
+                    <TextBox x:Name="txtPP" Width="30" Height="25" Margin="2"/>
+                </StackPanel>
+
+                <ListBox x:Name="lstAttacks" Grid.Column="2" Grid.Row="1" Margin="3" Width="100" Height="95" VerticalAlignment="Top"/>
+                <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Bottom">
+                    <Button x:Name="btnAddAttack"   Content="Add Attacks" Margin="4,4,4,0" Click="btnAddAttack_Click"/>
+                    <Button x:Name="btnRemoveAttack" Content="Remove Attack" Margin="4" Click="btnRemoveAttack_Click"/>
+                </StackPanel>
+                <Label Grid.Column="0" Grid.Row="2" Content="Type:" Margin="2"/>
+                <ComboBox x:Name="cmbMonsterTypes" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Margin="2" Height="25"/>
+
+                <Label Grid.Column="0" Grid.Row="3" Content="Resistances:" Margin="2"/>
+                <ListBox x:Name="lstResistances" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Height="50" Margin="2"/>
+                <ComboBox x:Name="cmbResistances" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Width="85" HorizontalAlignment="Left" Height="25" Margin="2" SelectionChanged="cmbResistances_SelectionChanged"/>
+                <Button x:Name="btnRemoveResistance" Grid.Column="2" Grid.Row="4" Content="Remove" Width="50" HorizontalAlignment="Right" Margin="2" Click="btnRemoveResistance_Click"/>
+
+                <Label Grid.Column="0" Grid.Row="5" Content="Immunities:" Margin="2"/>
+                <ListBox  x:Name="lstImmunities" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Height="50" Margin="2"/>
+                <ComboBox x:Name="cmbImmunities" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Width="85" HorizontalAlignment="Left" Height="25" Margin="2" SelectionChanged="cmbImmunities_SelectionChanged"/>
+                <Button x:Name="btnRemoveImmunity" Grid.Column="2" Grid.Row="6" Content="Remove" Width="50" HorizontalAlignment="Right" Margin="2" Click="btnRemoveImmunity_Click"/>
+
+                <Label Content="Special:" Grid.Column="0" Grid.Row="7" Margin="2"/>
+                <StackPanel Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2" Margin="2">
+                    <ListBox x:Name="lstMonsterSpecials" Height="50"/>
+                    <Button x:Name="btnAddSpecial" Content="Add Special" Margin="0,4,0,2" Click="btnAddSpecial_Click"/>
+                    <Button x:Name="btnRemoveSpecial" Content="Remove Special" Margin="0,2,0,2" Click="btnRemoveSpecial_Click"/>
+                </StackPanel>
+
+                <Button x:Name="btnSaveMonster" Grid.Row="0" Grid.Column="1" Margin="2.2,2.4,0,0" Content="Save" Grid.ColumnSpan="2" Width="68" HorizontalAlignment="Left" Height="19" VerticalAlignment="Top" Click="btnSaveMonster_Click"/>
+                <Button x:Name="btnLoadMonster" Grid.Row="0" Grid.Column="2" Margin="2" Content="Load" Width="68" HorizontalAlignment="Right" Click="btnLoadMonster_Click"/>
+
+                <Label Grid.Column="0" Grid.Row="8" Content="Multiattack:"/>
+                <CheckBox x:Name="chkMultiattack" Grid.Row="8" Grid.Column="1" VerticalAlignment="Top" IsChecked="true" Margin="0.2,5.4,0.2,0" Checked="chkMultiattack_Changed" Unchecked="chkMultiattack_Changed"/>
+                <Separator Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" BorderBrush="LightGray" BorderThickness="1" Height="1"/>
+
+                <Label Grid.Column="0" Grid.Row="10" Content="Copies" Margin="2"/>
+                <TextBox x:Name="txtAmount" Grid.Column="1" Grid.Row="10" Margin="2"/>
+
+
+            </Grid>
+        </GroupBox>
+
+        <Button x:Name="btnAdd" Grid.Column="1" Grid.Row="5" Content="Add Participant"  Grid.ColumnSpan="2" Height="20" Margin="5" Click="btnAdd_Click"/>
+
+    </Grid>
+</Window>

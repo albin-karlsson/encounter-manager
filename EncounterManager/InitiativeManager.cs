@@ -11,6 +11,7 @@ namespace EncounterManager
     public class InitiativeManager
     {
         Dice dice = new Dice();
+        public bool InitiativeRolled { get; set; }
 
         public List<Participant> InitiativeList { get; set; } = new List<Participant>();
 

@@ -91,7 +91,7 @@ namespace EncounterManagerUI
         /// <param name="e"></param>
         private void lstParticipants_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(lstParticipants.SelectedIndex > -1)
+            if(lstParticipants.SelectedIndex > -1 && initiativeManager.InitiativeRolled)
             {
                 ClearAttackList();
                 PopulateAttackListFromRemainingAttacks();
@@ -769,6 +769,8 @@ namespace EncounterManagerUI
         /// </summary>
         private void CreateInitiativeList()
         {
+            initiativeManager.InitiativeRolled = true;
+
             foreach (Participant participant in participantManager.Participants)
             {
                 if (participant is Monster)

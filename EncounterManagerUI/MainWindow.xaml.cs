@@ -28,7 +28,7 @@ namespace EncounterManagerUI
 
         public bool Advantage { get; set; }
         public bool Disadvantage { get; set; }
-
+        
 
         public MainWindow()
         {
